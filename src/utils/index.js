@@ -24,3 +24,21 @@ export const signUp = async (username, firstname, lastname, email, password, set
     }
 }
 
+export const readUsers = async (setter) => {
+    try {
+        // completing the same code as Insomnia app 
+        const response = await fetch("http://localhost:5001/listUsers", 
+        {
+            method: "GET", 
+            headers: {"Content-Type": "application/json"},
+            
+        }); 
+
+        const data = await response.json(); 
+        console.log(data.users)
+        setter(data.users)
+    } catch (error) {
+        console.log(error)
+    }
+}
+

@@ -14,11 +14,11 @@ const SignupOrLogin = ({ setter }) => {
 
     }
 
-    const updateUser = (_id) => {
-        const newUsername = prompt("Enter new Username: ")
+    // const updateUser = (_id) => {
+    //     const newUsername = prompt("Enter new Username: ")
 
-        Axios.put('http://localhost:5001/update', { newUsername: newUsername, id: id });
-    }
+    //     Axios.put('http://localhost:5001/update', { newUsername: newUsername, id: id });
+    // }
 
     return (
         <form onSubmit={ submitHandler }>
@@ -48,16 +48,18 @@ const SignupOrLogin = ({ setter }) => {
 
             <label>
                 Password:
-                <input onChange = { (event) => setPassword(event.target.value) } />
+                <input type="password" onChange = { (event) => setPassword(event.target.value) } />
             </label>
             <br></br>
             <button type="submit">
                 Click here to signup or login
             </button>
-            <button onClick={() => {updateUser(event._id)}}>
+            {/* <button onClick={() => {updateUser(event._id)}}>
                 Update
-            </button>
+            </button> */}
         </form>
     )
 }
 export default SignupOrLogin; 
+
+

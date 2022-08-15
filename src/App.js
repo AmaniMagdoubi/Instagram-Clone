@@ -3,12 +3,19 @@ import Header from './components/Header';
 import Posts from './components/Posts';
 import Images from './components/Images';
 import SignupOrLogin from './components/signupOrLogin';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, Route, Routes } from 'react-router-dom'; 
+import { readUsers } from './utils'; 
 
 
 function App() {
   const [user, setUser] = useState(); 
+  
+  const [listUsers, setListUsers] = useState([]); 
+
+  useEffect(()=> {
+    readUsers(setListUsers)
+  }, [listUsers])
 
   return (
     <div className="App">
@@ -29,8 +36,20 @@ function App() {
           <div>
             <SignupOrLogin setter={setUser}/>
           {user ? <h1>{user}</h1>: <h1>Not logged in</h1> }
-          </div>
-          } /> 
+            <div>
+            {listUsers && readUsers.map((item, index) => {return(
+                <div>
+                <br></br>
+                <h3>Friends:</h3>
+                <p>{item.userName}</p>
+            </div>
+            })</div>
+          
+        )}
+          
+          
+          
+        } /> 
         
         <Route path='/feed' element ={
           <div> 
@@ -45,4 +64,6 @@ function App() {
   );
 }
 
-export default App;
+// export default App;
+
+
